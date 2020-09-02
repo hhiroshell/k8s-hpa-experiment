@@ -1,0 +1,6 @@
+resources:
+- https://raw.githubusercontent.com/zalando-incubator/kube-metrics-adapter/v0.1.5/docs/custom-metrics-apiservice.yaml
+- https://raw.githubusercontent.com/zalando-incubator/kube-metrics-adapter/v0.1.5/docs/external-metrics-apiservice.yaml
+- https://raw.githubusercontent.com/zalando-incubator/kube-metrics-adapter/v0.1.5/docs/rbac.yaml
+- https://raw.githubusercontent.com/zalando-incubator/kube-metrics-adapter/v0.1.5/docs/service.yaml
+- ./kube-metrics-adapter.yaml

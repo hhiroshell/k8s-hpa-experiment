@@ -26,5 +26,3 @@ spec:
             initialDelaySeconds: 5
             periodSeconds: 10
           imagePullPolicy: Always
-      imagePullSecrets:
-        - name: pkg.github.com
