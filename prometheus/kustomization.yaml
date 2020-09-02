@@ -1,0 +1,7 @@
+bases:
+- git@github.com:kubernetes/ingress-nginx.git/deploy/prometheus?ref=ingress-nginx-2.15.0
+configMapGenerator:
+- name: prometheus-configuration
+  files:
+  - prometheus.yaml
+  behavior: replace

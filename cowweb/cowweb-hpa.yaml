@@ -1,0 +1,29 @@
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  namespace: cowweb
+  name: cowweb-hpa
+  annotations:
+    metric-config.external.prometheus-query.prometheus/prometheus-server: http://prometheus-server.ingress-nginx.svc.cluster.local:9090
+    # metric-config.<metricType>.<metricName>.<collectorName>/<configKey>
+    # <configKey> == query-name
+    metric-config.external.prometheus-query.prometheus/processed-events-per-second: |
+      sum by (job) (rate(nginx_ingress_controller_nginx_process_requests_total[1m]))
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: cowweb
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+    - type: External
+      external:
+        metric:
+          name: prometheus-query
+          selector:
+            matchLabels:
+              query-name: processed-events-per-second
+        target:
+          type: Value
+          averageValue: "2000m"

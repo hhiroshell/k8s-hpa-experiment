@@ -1,0 +1,12 @@
+## nginx overriding defaults configuration
+## Ref: https://github.com/kubernetes/ingress/blob/master/controllers/nginx/configuration.md
+##
+controller:
+  ## Expose an exporter port on 10254(default)
+  ##
+  metrics:
+    enabled: true
+
+  ## Annotations to be added to controller pods
+  ##
+  podAnnotations: {"prometheus.io/scrape": true}
