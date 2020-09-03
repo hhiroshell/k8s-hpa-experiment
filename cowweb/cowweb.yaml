@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: cowweb
-          image: docker.pkg.github.com/hhiroshell/cowweb-go/cowweb:latest
+          image: ghcr.io/hhiroshell/cowweb-go/cowweb:latest
           ports:
             - name: api
               containerPort: 8080

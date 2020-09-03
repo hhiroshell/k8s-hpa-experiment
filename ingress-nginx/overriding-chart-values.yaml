@@ -10,4 +10,4 @@ controller:
   ## Annotations to be added to controller pods
   ##
   podAnnotations:
-    prometheus.io/scrape: true
+    prometheus.io/scrape: "true"
