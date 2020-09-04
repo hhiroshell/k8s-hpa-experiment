@@ -1,0 +1,11 @@
+version: "3"
+services:
+  gatling:
+    build: ./
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./scripts/:/workdir/scripts/
+      - ./user-files/:/workdir/gatling-charts-highcharts-bundle-3.3.1/user-files
+      - ./results/:/workdir/gatling-charts-highcharts-bundle-3.3.1/results
+    command: scripts/run.sh
