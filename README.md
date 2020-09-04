@@ -36,3 +36,24 @@ $ kubectl apply -f ./cowweb/
 ```
 $ kustomize build ./kube-metrics-adapter/ | kubectl apply -f -
 ```
+
+メトリクスの取得
+---
+
+rps@nginx-ingress-controller
+
+```
+while true; do kubectl get --raw "/apis/external.metrics.k8s.io/v1beta1/namespaces/cowweb/prometheus-query?labelSelector=query-name=processed-events-per-second" | jq '.items[].value'; sleep 1; done
+```
+
+cpu
+
+```
+while true; do kubectl get --raw "/apis/metrics.k8s.io/v1beta1/namespaces/cowweb/pods/" | jq -r '.items[] | .containers[].usage.cpu'; echo ---; sleep 1; done
+```
+
+memory
+
+```
+while true; do kubectl get --raw "/apis/metrics.k8s.io/v1beta1/namespaces/cowweb/pods/" | jq -r '.items[] | .containers[].usage.memory'; echo ---; sleep 1; done
+```
