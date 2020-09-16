@@ -4,7 +4,7 @@ metadata:
   namespace: cowweb
   name: cowweb
 spec:
-  replicas: 2
+  replicas: 4 
   selector:
     matchLabels:
       app: cowweb
@@ -15,7 +15,15 @@ spec:
     spec:
       containers:
         - name: cowweb
-          image: ghcr.io/hhiroshell/cowweb-go/cowweb:latest
+          image: ghcr.io/hhiroshell/cowweb-go/cowweb:v1.0.0
+          command: 
+            - ./cowweb
+          args:
+            - serve
+            - --port=8080
+            - --slow
+            - --load=128
+          imagePullPolicy: Always
           ports:
             - name: api
               containerPort: 8080
@@ -23,6 +31,12 @@ spec:
             httpGet:
               path: /say
               port: api
-            initialDelaySeconds: 5
-            periodSeconds: 10
-          imagePullPolicy: Always
+            initialDelaySeconds: 1
+            periodSeconds: 1
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "128Mi"
+            limits:
+              cpu: "200m"
+              memory: "128Mi"

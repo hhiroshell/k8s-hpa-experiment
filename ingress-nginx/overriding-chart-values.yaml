@@ -2,6 +2,8 @@
 ## Ref: https://github.com/kubernetes/ingress/blob/master/controllers/nginx/configuration.md
 ##
 controller:
+  replicaCount: 2
+
   ## Expose an exporter port on 10254(default)
   ##
   metrics:

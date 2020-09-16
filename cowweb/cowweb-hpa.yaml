@@ -14,7 +14,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: cowweb
-  minReplicas: 2
+  minReplicas: 4
   maxReplicas: 10
   metrics:
     - type: External
@@ -26,4 +26,11 @@ spec:
               query-name: processed-events-per-second
         target:
           type: Value
-          averageValue: "2000m"
+          averageValue: "70"
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 0
+      policies:
+      - type: Pods
+        value: 4
+        periodSeconds: 5
